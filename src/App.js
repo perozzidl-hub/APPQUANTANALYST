@@ -295,13 +295,19 @@ export default function QuantAnalyst() {
       ["🏆 Generando ranking final (mínimo 70% prob. éxito)...", "success"],
     ];
 
-    let delay = 0;
     const runLogs = async () => {
-      for (const [text, type] of logSteps) {
-        await new Promise(r => setTimeout(r, delay));
+      // CORREGIDO: usar for con índice para evitar el problema de "no-loop-func"
+      let delay = 0;
+      for (let i = 0; i < logSteps.length; i++) {
+        const [text, type] = logSteps[i];
+        // Usamos una variable local para capturar el valor actual de delay
+        const currentDelay = delay;
+        await new Promise(resolve => setTimeout(resolve, currentDelay));
         addLog(text, type);
         delay = 350 + Math.random() * 300;
       }
+
+      // Simular procesamiento final
       await new Promise(r => setTimeout(r, 800));
       const mockData = generateMockData();
       setResult(mockData);
