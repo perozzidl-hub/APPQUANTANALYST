@@ -21,10 +21,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # No uses cache para evitar que requiera lockfile
+
+      # PASO CLAVE: Generar package-lock.json si no existe
+      - name: Generate lockfile if missing
+        run: |
+          if [ ! -f package-lock.json ] && [ ! -f yarn.lock ] && [ ! -f npm-shrinkwrap.json ]; then
+            echo "⚠️ No lockfile found. Generating package-lock.json..."
+            npm install --package-lock-only
+          else
+            echo "✅ Lockfile already exists."
+          fi
 
       - name: Install dependencies
-        run: npm install --no-package-lock   # <--- Esto evita que falle si no hay lockfile
+        run: npm ci   # Ahora package-lock.json existe, así que npm ci funciona
 
       - name: Build
         run: npm run build
