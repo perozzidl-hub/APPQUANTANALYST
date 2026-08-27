@@ -3,35 +3,39 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:  # Permite ejecutar manualmente desde la pestaña Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
+          cache: 'npm'   # Esto acelera la instalación si hay package-lock.json
 
       - name: Install dependencies
-        run: npm install   # <--- Esto generará package-lock.json si no existe
+        run: npm install
 
       - name: Build
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3   # <--- Versión oficial para Pages
         with:
           path: build
 
   deploy:
     needs: build
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -39,4 +43,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
