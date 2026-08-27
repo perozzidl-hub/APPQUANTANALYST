@@ -22,18 +22,13 @@ jobs:
         with:
           node-version: 20
 
-      # PASO CLAVE: Generar package-lock.json si no existe
-      - name: Generate lockfile if missing
-        run: |
-          if [ ! -f package-lock.json ] && [ ! -f yarn.lock ] && [ ! -f npm-shrinkwrap.json ]; then
-            echo "⚠️ No lockfile found. Generating package-lock.json..."
-            npm install --package-lock-only
-          else
-            echo "✅ Lockfile already exists."
-          fi
+      # ELIMINAR el package-lock.json existente (si hay alguno)
+      - name: Remove old lockfile
+        run: rm -f package-lock.json
 
-      - name: Install dependencies
-        run: npm ci   # Ahora package-lock.json existe, así que npm ci funciona
+      # Generar un nuevo lockfile con npm install
+      - name: Install dependencies (genera nuevo lockfile)
+        run: npm install
 
       - name: Build
         run: npm run build
