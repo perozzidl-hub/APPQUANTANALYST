@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:  # Permite ejecutar manualmente desde la pestaña Actions
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,16 +21,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'   # Esto acelera la instalación si hay package-lock.json
+          # No uses cache para evitar que requiera lockfile
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-package-lock   # <--- Esto evita que falle si no hay lockfile
 
       - name: Build
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3   # <--- Versión oficial para Pages
+        uses: actions/upload-pages-artifact@v3
         with:
           path: build
 
