@@ -378,9 +378,9 @@ const getCryptoData = async (tickers) => {
 // ==================== FUNCIÓN PRINCIPAL DE OBTENCIÓN DE DATOS ====================
 const fetchRealData = async () => {
   // Definir listas de activos
-  const stocks = ['AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA', 'AVGO', 'ORCL', 'AMD'];
+  const stocks = ['NVDA', 'AAPL', 'GOOGL', 'MSFT', 'AMZN', '2222.SR', 'AVGO', 'META', 'TSM', 'TSLA', 'BRK.B', 'WMT', 'LLY', 'JPM', 'XOM', '005930.KS', 'JNJ', 'V', 'TCEHY', 'ASML', 'MA', 'COST', 'ORCL', 'CVX', 'NFLX', 'ABBV', 'MU', '1398.HK', '000660.KS', 'PLTR', 'BAC', 'PG', '1288.HK', 'AMD', 'CAT', 'HD', 'KO', '601857.SS', 'RHHBY', 'CSCO', 'AZN', 'MRK', 'GE', 'NVS', '0939.HK', 'BABA', 'HSBC', 'AMAT', '300750.SZ', 'LRCX', 'SHEL', 'LVMUY', '600519.SS', 'MS', 'RTX', 'GS', 'TM', 'PM', '3988.HK', 'NSRGY', 'WFC', 'UNH', 'GEV', 'IHC.AE', 'TMUS', 'LIN', 'IBM', 'RY', 'CHL', 'INTC', 'MCD', 'LRLCY', 'PEP', 'VZ', 'AXP', 'T', 'TTE', 'C', 'SAP', 'HESAY', 'RELIANCE.NS', 'NEE', 'KLAC', 'CBA.AX', 'AMGN', 'MUFG', 'SIEGY', 'TMO', 'ABT', 'DTEGY', 'IDEXY', 'TJX', 'TXN', 'CEO', 'BHP', 'GILD', 'CRM', 'DIS', 'SCHW', 'ISRG'];
   const forex = ['EURUSD', 'GBPUSD', 'USDJPY', 'USDCHF', 'AUDUSD'];
-  const cryptos = ['BTC', 'ETH', 'BNB', 'SOL', 'XRP'];
+  const cryptos = ['BTC', 'ETH', 'USDT', 'BNB', 'XRP', 'USDC', 'SOL', 'TRX', 'HYPE', 'STETH', 'DOGE', 'USDe', 'ZEC', 'WBTC', 'WBETH', 'XMR', 'WETH', 'LINK', 'ADA', 'XLM', 'DAI', 'BCH', 'TON', 'LTC', 'HBAR', 'SHIB', 'AVAX', 'UNI', 'SUI', 'TAO', 'CRO', 'LEO', 'APT', 'MNT', 'RNDR', 'FIL', 'ATOM', 'ETC', 'IMX', 'INJ', 'OP', 'AR', 'VET', 'GRT', 'RUNE', 'AAVE', 'FLOKI', 'THETA', 'MKR', 'EGLD', 'ALGO', 'HNT', 'GALA', 'BGB', 'BTT', 'FTM', 'SNX', 'XDC', 'QNT', 'SAND', 'MANA', 'CHZ', 'ZIL', 'KCS', 'HOT', 'ENJ', 'COMP', 'LRC', 'BAT', 'NEO', 'DASH', 'ZEN', 'KAVA', 'ONE', 'RVN', 'OM', 'WLD', 'WOO', 'CFX', 'FXS', '1INCH', 'CRV', 'TUSD', 'FLR', 'ARB', 'VIRTUAL', 'STX', 'AERO', 'JUP', 'BONK', 'ENA', 'PENDLE', 'STRK', 'MEME', 'PYTH', 'JTO', 'W', 'DYDX', 'SEI'];
   
   // Obtener datos en paralelo con límite de tiempo
   const startTime = Date.now();
