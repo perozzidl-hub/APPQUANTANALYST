@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://perozzidl-hub.github.io/APPQUANTANALYST",
- "dependencies": {
+  "dependencies": {
   "react": "^18.2.0",
   "react-dom": "^18.2.0",
   "react-scripts": "5.0.1",
-  "stock-sdk": "^2.0.0"
+  "stock-sdk": "2.4.4"
 },
   "scripts": {
     "start": "react-scripts start",
