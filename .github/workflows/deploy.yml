@@ -22,13 +22,8 @@ jobs:
         with:
           node-version: 20
 
-      # ELIMINAR el package-lock.json existente (si hay alguno)
-      - name: Remove old lockfile
-        run: rm -f package-lock.json
-
-      # Generar un nuevo lockfile con npm install
-      - name: Install dependencies (genera nuevo lockfile)
-        run: npm install
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
 
       - name: Build
         run: npm run build
